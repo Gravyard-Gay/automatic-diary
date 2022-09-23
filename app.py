@@ -1,6 +1,8 @@
 from tkinter import *
 import customtkinter as ctk
 import os
+from datetime import date
+
 
 root = Tk()
 root.geometry("640x640")
@@ -19,7 +21,8 @@ btnch = "#6D0B53"
 def newNote():
     entryNum = int(open("config\count.txt").read())
     entryNum+=1
-    entryDir = f"entrys/entry_{entryNum}.txt"
+    hj = date.today()
+    entryDir = f"entrys/entry_{entryNum}_{hj}.txt"
     
     entry = entryField.get(1.0, END)
 
@@ -37,9 +40,8 @@ winBg = Canvas(root, width=640, height=640, bg=bgc).place(x=0, y=0)
 title = ctk.CTkLabel(root, text="New Entry:", fg_color=bgc, text_font=("sans-serif", 16)).pack(pady=10)
 
 
-entryField = ctk.CTkTextbox(root, fg_color=txtbg, border=0, corner_radius=30,
-                            height=482, width=560, text_font=("sans-serif", 16),
-                            bg_color=bgc)
+entryField = Text(root, fg="#fff", border=0, height=20,
+                  width=50, font=("sans-serif", 16), bg=txtbg)
 entryField.pack()
 
 btnFrame = Frame(root, bg=bgc)
